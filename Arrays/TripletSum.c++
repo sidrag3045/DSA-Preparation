@@ -30,6 +30,11 @@ vector<vector<int>> tripletSum(vector<int> &arr, int targetSum) {
         int low = i+1;
         int high = n-1;
 
+        // we can skip the duplicate elements to avoid duplicate triplets in the result as for any particular element we have searched completely in our rest of the array for the other two elements, so if we encounter the same element again, we will end up getting the same triplet again.
+        if(i > 0 && arr[i] == arr[i-1]) {
+            continue; // skip duplicate elements to avoid duplicate triplets
+        }
+
         // 2 pointer approach
         while(low < high){
             int currSum = arr[i] + arr[low] + arr[high];
